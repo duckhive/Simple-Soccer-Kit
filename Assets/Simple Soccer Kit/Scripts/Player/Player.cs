@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     [HideInInspector] public Vector3 startPosition;
     [HideInInspector] public Quaternion startRotation;
     [HideInInspector] public Rigidbody rb;
+    [HideInInspector] public Shooting shooting;
 
     public float speed = 300f;
     public float passPower;
@@ -154,7 +155,7 @@ public class Player : MonoBehaviour
         
         foreach (var player in team.otherTeam.teamPlayers)
         {
-            if(Vector3.Distance(player.transform.position, transform.position) < 4)
+            if(Vector3.Distance(player.transform.position, transform.position) < 5)
                 isOpen = false;
         }
     }

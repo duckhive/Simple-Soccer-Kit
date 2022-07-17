@@ -53,7 +53,9 @@ public class FSM_ChooseNewAttackZone : StateMachineBehaviour
             }
             else
             {
-                _player.zoneCurrentlySeeking = _player.attackZone;
+                var randomZone = Random.Range(0, _player.nearbyPitchZones.Count);
+                
+                _player.zoneCurrentlySeeking = _player.nearbyPitchZones[randomZone];
             }
         }
         

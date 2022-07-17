@@ -17,18 +17,16 @@ public class FSM_BallInDangerZone : StateMachineBehaviour
     {
         _player.direction = (_player.dangerZone.transform.position - _player.transform.position).normalized;
         
+        if (!_player.team.dangerZone.ballInDangerZone)
+        {
+            animator.SetBool("Seek Danger Zone", false);
+        }
+        
         if (Vector3.Distance(BallManager.Instance.transform.position, _player.homeZone.transform.position) < 18)
         {
             animator.SetBool("Seeking Ball", true);
         }
         
-        if (!_player.team.dangerZone.ballInDangerZone)
-        {
-            animator.ResetTrigger("Seek Home Zone");
-            animator.SetTrigger("Seek Home Zone");
-            animator.SetBool("Ball In Danger Zone", false);
-        }
-
         if(_player.team.hasPossession)
             animator.SetBool("Team Has Possession", true);
         

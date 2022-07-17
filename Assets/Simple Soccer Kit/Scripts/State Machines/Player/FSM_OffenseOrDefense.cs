@@ -10,6 +10,7 @@ public class FSM_OffenseOrDefense : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         _player = animator.GetComponent<Player>();
+        //animator.SetBool("Ball Shot", false);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

@@ -51,6 +51,12 @@ public class FSM_AdvanceBall : StateMachineBehaviour
                 animator.SetTrigger("Shoot");
             }
         }
+
+        if (!_player.isOpen && _player.distanceToGoal < 30)
+        {
+            animator.ResetTrigger("Shoot");
+            animator.SetTrigger("Shoot");
+        }
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state

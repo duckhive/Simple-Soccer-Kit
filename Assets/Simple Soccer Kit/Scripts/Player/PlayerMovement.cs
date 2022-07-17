@@ -9,11 +9,13 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody _rb;
     private Vector3 _movementVector;
     private Player _player;
+    private Shooting _shooting;
 
     private void Awake()
     {
         _rb = GetComponent<Rigidbody>();
         _player = GetComponent<Player>();
+        _shooting = GetComponent<Shooting>();
     }
 
     private void Start()
@@ -32,14 +34,21 @@ public class PlayerMovement : MonoBehaviour
         {
             if (_player.user)
             {
-                if(Input.GetAxis("Turbo") == 0)
-                    _rb.velocity = _movementVector * _player.speed * Time.deltaTime;
-
-                if (Input.GetAxis("Turbo") > 0)
-                    _rb.velocity = _movementVector * _turboSpeed * Time.deltaTime;
-                
                 if(Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
                     transform.rotation = Quaternion.LookRotation(_movementVector);
+
+                if (!_shooting.shooting)
+                {
+                    if(Input.GetAxis("Turbo") == 0)
+                        _rb.velocity = _movementVector * _player.speed * Time.deltaTime;
+
+                    if (Input.GetAxis("Turbo") > 0)
+                        _rb.velocity = _movementVector * _turboSpeed * Time.deltaTime;
+                }
+                else
+                {
+                    _rb.velocity = Vector3.zero;
+                }
             }
 
             else

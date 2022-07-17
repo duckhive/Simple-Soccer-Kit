@@ -32,11 +32,14 @@ public class FSM_MoveToAttackZone : StateMachineBehaviour
         
         if(_player.otherTeam.hasPossession)
             animator.SetBool("Team Has Possession", false);
+        
+        if(GameManager.Instance.ballShot)
+            animator.SetBool("Ball Shot", true);
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        
+        animator.SetBool("Ball Shot", false);
     }
 }

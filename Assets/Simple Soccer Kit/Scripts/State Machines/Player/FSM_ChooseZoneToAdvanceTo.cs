@@ -40,10 +40,19 @@ public class FSM_ChooseZoneToAdvanceTo : StateMachineBehaviour
                 .Where(t => t.teamZoneEnum == TeamZoneEnum.Away)
                 .ToList();
 
-            
-            var randomZone = Random.Range(0, bestZones.Count);
 
-            _player.zoneCurrentlySeeking = bestZones[randomZone];
+            if (bestZones[0] != null)
+            {
+                var randomZone = Random.Range(0, bestZones.Count);
+
+                _player.zoneCurrentlySeeking = bestZones[randomZone];
+            }
+            else
+            {
+                var randomZone = Random.Range(0, _player.nearbyPitchZones.Count);
+
+                _player.zoneCurrentlySeeking = _player.nearbyPitchZones[randomZone];
+            }
         }
         
         if (_player.team.teamEnum == TeamEnum.Away)
@@ -55,9 +64,18 @@ public class FSM_ChooseZoneToAdvanceTo : StateMachineBehaviour
                 .ToList();
 
             
-            var randomZone = Random.Range(0, bestZones.Count);
+            if (bestZones[0] != null)
+            {
+                var randomZone = Random.Range(0, bestZones.Count);
 
-            _player.zoneCurrentlySeeking = bestZones[randomZone];
+                _player.zoneCurrentlySeeking = bestZones[randomZone];
+            }
+            else
+            {
+                var randomZone = Random.Range(0, _player.nearbyPitchZones.Count);
+
+                _player.zoneCurrentlySeeking = _player.nearbyPitchZones[randomZone];
+            }
         }
     }
 }

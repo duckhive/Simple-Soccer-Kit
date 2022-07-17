@@ -41,6 +41,8 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator GoalScored()
     {
+        ballShot = false;
+        
         GameNotActive();
         ResetBallAndPlayers();
 

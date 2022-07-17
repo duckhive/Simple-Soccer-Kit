@@ -30,9 +30,22 @@ public class FSM_Pass : StateMachineBehaviour
     
     private Player FindPlayerToPassTo()
     {
-        return _player.team.teamPlayers
-            .Where(t => t != this)
+        var openPlayer = _player.team.teamPlayers
+            .Where(t => t != _player)
             .Where(t => t.isOpen)
+            .OrderBy(t => t.distanceToGoal)
             .FirstOrDefault();
+
+        if (openPlayer != null)
+        {
+            return openPlayer;
+        }
+        else
+        {
+            return _player.team.teamPlayers
+                .Where(t => t != _player)
+                .OrderBy(t => t.distanceToGoal)
+                .FirstOrDefault();
+        }
     }
 }

@@ -7,6 +7,7 @@ using Random = UnityEngine.Random;
 public class Shooting : MonoBehaviour
 {
     public float shotForce;
+    public bool shooting;
 
     private Player _player;
     private float _resetShotForce;
@@ -33,6 +34,7 @@ public class Shooting : MonoBehaviour
                             AimTarget();
                             _shotTimer += Time.deltaTime;
                             shotForce += Time.deltaTime * 10;
+                            StartCoroutine(ShootingCooldown());
                         }
 
                         if ((Input.GetButtonUp("Shoot") || _shotTimer > 0.75f))
@@ -41,11 +43,21 @@ public class Shooting : MonoBehaviour
                             shotForce = _resetShotForce;
                             _shotTimer = 0;
                             _player.team.shotTarget.ResetPosition();
+                            GameManager.Instance.ballShot = true;
                         }
                     }   
                 }
             }
         }
+    }
+
+    private IEnumerator ShootingCooldown()
+    {
+        shooting = true;
+
+        yield return new WaitForSeconds(0.75f);
+
+        shooting = false;
     }
 
     public void ShootBall()
@@ -57,7 +69,6 @@ public class Shooting : MonoBehaviour
         BallManager.Instance.rb.AddForce(direction * shotForce, ForceMode.Impulse);
         _player.hasPossession = false;
         _player.team.hasPossession = false;
-        GameManager.Instance.ballShot = true;
     }
 
     private void AimTarget()

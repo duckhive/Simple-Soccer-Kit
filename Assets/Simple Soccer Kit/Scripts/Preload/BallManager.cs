@@ -49,6 +49,9 @@ public class BallManager : MonoBehaviour
     public void OutOfBounds()
     {
         if (transform.position.y < 0)
+        {
             GameManager.Instance.ResetBallAndPlayers();
+            GameManager.Instance.ballShot = false;
+        }
     }
 }
