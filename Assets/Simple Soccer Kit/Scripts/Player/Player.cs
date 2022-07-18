@@ -32,6 +32,7 @@ public class Player : MonoBehaviour
     public PitchZone homeZone;
     public PitchZone attackZone;
     public PitchZone dangerZone;
+    public PitchZone midZone;
     public PitchZone zoneCurrentlySeeking;
 
     

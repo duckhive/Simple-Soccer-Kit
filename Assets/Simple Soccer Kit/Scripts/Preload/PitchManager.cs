@@ -27,6 +27,7 @@ public class PitchManager : MonoBehaviour
         SetPlayerHomeZones();
         SetPlayerAttackZones();
         SetPlayerDangerZones();
+        SetPlayerMidZones();
     }
     
     private void SetPlayerHomeZones()
@@ -63,5 +64,17 @@ public class PitchManager : MonoBehaviour
         GameManager.Instance.allPlayers[5].dangerZone = pitchZones[25];
         GameManager.Instance.allPlayers[6].dangerZone = pitchZones[30];
         GameManager.Instance.allPlayers[7].dangerZone = pitchZones[29];
+    }
+
+    private void SetPlayerMidZones()
+    {
+        GameManager.Instance.allPlayers[0].midZone = pitchZones[17];
+        GameManager.Instance.allPlayers[1].midZone = pitchZones[18];
+        GameManager.Instance.allPlayers[2].midZone = pitchZones[13];
+        GameManager.Instance.allPlayers[3].midZone = pitchZones[14];
+        GameManager.Instance.allPlayers[4].midZone = pitchZones[18];
+        GameManager.Instance.allPlayers[5].midZone = pitchZones[17];
+        GameManager.Instance.allPlayers[6].midZone = pitchZones[22];
+        GameManager.Instance.allPlayers[7].midZone = pitchZones[21];
     }
 }

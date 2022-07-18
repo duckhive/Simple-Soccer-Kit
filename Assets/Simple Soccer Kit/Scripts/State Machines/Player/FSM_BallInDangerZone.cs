@@ -30,7 +30,8 @@ public class FSM_BallInDangerZone : StateMachineBehaviour
         if(_player.team.hasPossession)
             animator.SetBool("Team Has Possession", true);
         
-        
+        if(_player.team.midZone.ballInMidZone)
+            animator.SetBool("Seek Mid Zone", true);
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state

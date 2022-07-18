@@ -24,6 +24,7 @@ public class Team : MonoBehaviour
     public TeamEnum teamEnum;
 
     public DangerZone dangerZone;
+    public MidZone midZone;
 
 
     private void Awake()
@@ -31,5 +32,6 @@ public class Team : MonoBehaviour
         teamPlayers = GetComponentsInChildren<Player>().ToList();
         shotTarget = GetComponentInChildren<ShotTarget>();
         dangerZone = GetComponentInChildren<DangerZone>();
+        midZone = GetComponentInChildren<MidZone>();
     }
 }

@@ -38,6 +38,14 @@ public class FSM_SeekBall : StateMachineBehaviour
                 animator.SetBool("Seeking Ball", false);
             }
         }
+        else if (_player.team.midZone.ballInMidZone)
+        {
+            if (Vector3.Distance(BallManager.Instance.transform.position, _player.midZone.transform.position) > 18)
+            {
+                animator.SetBool("Seek Mid Zone", true);
+                animator.SetBool("Seeking Ball", false);
+            }
+        }
         else
         {
             if (Vector3.Distance(BallManager.Instance.transform.position, _player.homeZone.transform.position) > 18)
