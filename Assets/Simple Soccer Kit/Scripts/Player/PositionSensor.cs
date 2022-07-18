@@ -15,51 +15,59 @@ public class PositionSensor : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent<PitchZone>(out PitchZone pitchZone) != null)
+        if (GameManager.Instance.gameActive)
         {
-            _player.currentPitchZone = pitchZone;
-
-            if (pitchZone != null)
+            if (other.GetComponent<PitchZone>() != null)
             {
-                if (_player.team.teamEnum == TeamEnum.Away)
+                var pitchZone = other.GetComponent<PitchZone>();
+            
+                _player.currentPitchZone = pitchZone;
+
+                if (pitchZone != null)
                 {
-                    pitchZone.IncreaseAwayScore();
+                    if (_player.team.teamEnum == TeamEnum.Away)
+                    {
+                        pitchZone.IncreaseAwayScore();
 
-                    if (pitchZone.teamZoneEnum == TeamZoneEnum.Home)
-                        _player.canShoot = true;
-                    else
-                        _player.canShoot = false;
-                }
+                        if (pitchZone.teamZoneEnum == TeamZoneEnum.Home)
+                            _player.canShoot = true;
+                        else
+                            _player.canShoot = false;
+                    }
 
-                if (_player.team.teamEnum == TeamEnum.Home)
-                {
-                    pitchZone.IncreaseHomeScore();
+                    if (_player.team.teamEnum == TeamEnum.Home)
+                    {
+                        pitchZone.IncreaseHomeScore();
 
-                    if (pitchZone.teamZoneEnum == TeamZoneEnum.Away)
-                        _player.canShoot = true;
-                    else
-                        _player.canShoot = false;
+                        if (pitchZone.teamZoneEnum == TeamZoneEnum.Away)
+                            _player.canShoot = true;
+                        else
+                            _player.canShoot = false;
+                    }
                 }
             }
-                
-                
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.TryGetComponent<PitchZone>(out PitchZone pitchZone) != null)
+        if (GameManager.Instance.gameActive)
         {
-            if(pitchZone != null)
+            if (other.GetComponent<PitchZone>() != null)
             {
-                if (_player.team.teamEnum == TeamEnum.Away)
+                var pitchZone = other.GetComponent<PitchZone>();
+            
+                if(pitchZone != null)
                 {
-                    pitchZone.DecreaseAwayScore();
-                }
+                    if (_player.team.teamEnum == TeamEnum.Away)
+                    {
+                        pitchZone.DecreaseAwayScore();
+                    }
 
-                if (_player.team.teamEnum == TeamEnum.Home)
-                {
-                    pitchZone.DecreaseHomeScore();
+                    if (_player.team.teamEnum == TeamEnum.Home)
+                    {
+                        pitchZone.DecreaseHomeScore();
+                    }
                 }
             }
         }

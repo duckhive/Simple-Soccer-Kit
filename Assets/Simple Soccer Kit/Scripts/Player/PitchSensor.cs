@@ -15,30 +15,25 @@ public class PitchSensor : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent<PitchZone>(out PitchZone pitchZone) != null)
-            _player.nearbyPitchZones.Insert(0, pitchZone);
+        if (GameManager.Instance.gameActive)
+        {
+            if (other.GetComponent<PitchZone>() != null)
+            {
+                var pitchZone = other.GetComponent<PitchZone>();
+                _player.nearbyPitchZones.Insert(0, pitchZone);
+            }
+        }
     }
     
     private void OnTriggerExit(Collider other)
     {
-        if (other.TryGetComponent<PitchZone>(out PitchZone pitchZone) != null)
-            _player.nearbyPitchZones.Remove(pitchZone);
-    }
-    
-    public PitchZone CalculateBestSupportZone()
-    {
-        var zones = _player.nearbyPitchZones;
-
-        foreach (PitchZone zone in zones)
+        if (GameManager.Instance.gameActive)
         {
-            if (zone == null)
-                zones.Remove(zone);
-            if (zone.awayScore > 0)
-                zones.Remove(zone);
+            if (other.GetComponent<PitchZone>() != null)
+            {
+                var pitchZone = other.GetComponent<PitchZone>();
+                _player.nearbyPitchZones.Remove(pitchZone);
+            }
         }
-
-        var randomZone = Random.Range(0, zones.Count);
-
-        return zones[randomZone];
     }
 }

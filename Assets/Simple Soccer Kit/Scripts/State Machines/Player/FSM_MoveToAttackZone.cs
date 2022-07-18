@@ -15,7 +15,11 @@ public class FSM_MoveToAttackZone : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        _player.direction = (_player.zoneCurrentlySeeking.transform.position - _player.transform.position).normalized;
+        if (_player.zoneCurrentlySeeking != null)
+            _player.direction = (_player.zoneCurrentlySeeking.transform.position - _player.transform.position)
+                .normalized;
+        else
+            animator.SetBool("Attack Zone Chosen", false);
         
         if (_player.receivingPass)
         {

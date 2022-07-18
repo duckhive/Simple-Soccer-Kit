@@ -11,8 +11,7 @@ public class FSM_ChooseNewAttackZone : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         _player = animator.GetComponent<Player>();
-        ChooseNewAttackZone();
-        animator.SetBool("Attack Zone Chosen", true);
+        ChooseNewAttackZone(animator);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -22,8 +21,6 @@ public class FSM_ChooseNewAttackZone : StateMachineBehaviour
         
         if(_player.hasPossession)
             animator.SetBool("Has Possession", true);
-        
-        animator.SetBool("Attack Zone Chosen", true);
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
@@ -32,17 +29,15 @@ public class FSM_ChooseNewAttackZone : StateMachineBehaviour
         
     }
     
-    private void ChooseNewAttackZone()
+    private void ChooseNewAttackZone(Animator animator)
     {
         if (_player.team.teamEnum == TeamEnum.Home)
         {
-            var bestZones = _player.nearbyPitchZones
-                .Where(t => t != null)
+            var bestZones = PitchManager.Instance.pitchZones
                 .Where(t => t.awayScore == 0)
                 .Where(t => t.homeScore == 0)
-                .Where(t => Vector3.Distance(t.transform.position, BallManager.Instance.transform.position) < 20)
-                .Where(t => t.transform.position.z > _player.transform.position.z)
-                //.Where(t => t.teamZoneEnum == TeamZoneEnum.Away)
+                //.Where(t => Vector3.Distance(t.transform.position, BallManager.Instance.transform.position) < 30)
+                .Where(t => t.transform.position.z >= _player.transform.position.z)
                 .ToList();
             
             if (bestZones[0] != null)
@@ -50,23 +45,24 @@ public class FSM_ChooseNewAttackZone : StateMachineBehaviour
                 var randomZone = Random.Range(0, bestZones.Count);
 
                 _player.zoneCurrentlySeeking = bestZones[randomZone];
+                
+                animator.SetBool("Attack Zone Chosen", true);
             }
             else
             {
-                var randomZone = Random.Range(0, _player.nearbyPitchZones.Count);
+                _player.zoneCurrentlySeeking = _player.attackZone;
                 
-                _player.zoneCurrentlySeeking = _player.nearbyPitchZones[randomZone];
+                animator.SetBool("Attack Zone Chosen", true);
             }
         }
         
         if (_player.team.teamEnum == TeamEnum.Away)
         {
-            var bestZones = _player.nearbyPitchZones
-                .Where(t => t != null)
+            var bestZones = PitchManager.Instance.pitchZones
                 .Where(t => t.awayScore == 0)
                 .Where(t => t.homeScore == 0)
-                .Where(t => Vector3.Distance(t.transform.position, BallManager.Instance.transform.position) < 20)
-                .Where(t => t.transform.position.z < _player.transform.position.z)
+                //.Where(t => Vector3.Distance(t.transform.position, BallManager.Instance.transform.position) < 30)
+                .Where(t => t.transform.position.z <= _player.transform.position.z)
                 .ToList();
             
             if (bestZones[0] != null)
@@ -74,10 +70,14 @@ public class FSM_ChooseNewAttackZone : StateMachineBehaviour
                 var randomZone = Random.Range(0, bestZones.Count);
 
                 _player.zoneCurrentlySeeking = bestZones[randomZone];
+                
+                animator.SetBool("Attack Zone Chosen", true);
             }
             else
             {
                 _player.zoneCurrentlySeeking = _player.attackZone;
+                
+                animator.SetBool("Attack Zone Chosen", true);
             }
         }
     }
