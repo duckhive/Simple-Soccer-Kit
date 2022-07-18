@@ -15,14 +15,14 @@ public class Player : MonoBehaviour
     [HideInInspector] public Quaternion startRotation;
     [HideInInspector] public Rigidbody rb;
     [HideInInspector] public Shooting shooting;
-
+    [HideInInspector] public Vector3 direction;
+    
     public float speed = 300f;
     public float passPower;
     public Transform ballPosition;
     public bool user;
     public bool hasPossession;
     public bool receivingPass;
-    public bool seekingBall;
     public bool canShoot;
     public bool isOpen;
     public float distanceToBall;
@@ -34,11 +34,10 @@ public class Player : MonoBehaviour
     public PitchZone dangerZone;
     public PitchZone zoneCurrentlySeeking;
 
-    public Vector3 direction;
+    
     
     private bool _seekingZone;
     private PitchSensor _pitchSensor;
-    
     private RaycastHit _lineOfSight;
     private Animator _anim;
     private float _turboSpeed;
@@ -60,9 +59,9 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        otherTeam = FindObjectsOfType<Team>()
-            .Where(t => t != team)
-            .FirstOrDefault();
+        otherTeam = FindObjectsOfType
+                <Team>()
+            .FirstOrDefault(t => t != team);
     }
 
     private void Update()
@@ -87,7 +86,7 @@ public class Player : MonoBehaviour
         {
             if (!user)
             {
-                if (receivingPass || seekingBall)
+                if (receivingPass)
                 {
                     rb.velocity = direction * _turboSpeed * Time.deltaTime;
                 }
