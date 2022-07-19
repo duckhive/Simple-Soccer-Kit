@@ -16,7 +16,7 @@ public class Player : MonoBehaviour
     [HideInInspector] public Rigidbody rb;
     [HideInInspector] public Shooting shooting;
     [HideInInspector] public Vector3 direction;
-    
+
     public float speed = 300f;
     public float passPower;
     public Transform ballPosition;
@@ -26,6 +26,7 @@ public class Player : MonoBehaviour
     public bool canShoot;
     public bool isOpen;
     public bool isOpenForPass;
+    public bool possessionCooldown;
     public float distanceToBall;
     public float distanceToGoal;
     public PitchZone homeZone;

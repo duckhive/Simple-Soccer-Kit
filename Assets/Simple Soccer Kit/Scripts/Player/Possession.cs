@@ -16,13 +16,13 @@ public class Possession : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.collider.GetComponent<BallManager>() && GameManager.Instance.gameActive)
+        if (other.collider.GetComponent<BallManager>() && GameManager.Instance.gameActive && !_player.possessionCooldown)
         {
-            GainPossession();
+            StartCoroutine(GainPossession());
         }
     }
 
-    private void GainPossession()
+    private IEnumerator GainPossession()
     {
         BallManager.Instance.transform.position = _player.ballPosition.position;
         BallManager.Instance.transform.SetParent(_player.ballPosition);
@@ -44,6 +44,11 @@ public class Possession : MonoBehaviour
 
         if(_player.team.user)
             SwapBrains();
+
+        yield return null;
+
+        if (GameManager.Instance.possessingPlayer.Count > 1)
+            StartCoroutine(PossessionCooldown(GameManager.Instance.possessingPlayer[1]));
     }
 
     private void SwapBrains()
@@ -53,5 +58,14 @@ public class Possession : MonoBehaviour
             _player.UserBrain();
             _team.currentUser[1].AiBrain();
         }
+    }
+
+    public IEnumerator PossessionCooldown(Player player)
+    {
+        player.possessionCooldown = true;
+
+        yield return new WaitForSeconds(1);
+
+        player.possessionCooldown = false;
     }
 }
