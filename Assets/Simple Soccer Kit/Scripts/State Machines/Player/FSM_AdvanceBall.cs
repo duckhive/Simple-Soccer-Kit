@@ -39,13 +39,16 @@ public class FSM_AdvanceBall : StateMachineBehaviour
 
         if (!_player.isOpen && _player.hasPossession)
         {
-            animator.ResetTrigger("Pass");
-            animator.SetTrigger("Pass");
+            if (Random.value > 0.95)
+            {
+                animator.ResetTrigger("Pass");
+                animator.SetTrigger("Pass");
+            }
         }
 
         if (_player.isOpen && _player.canShoot)
         {
-            if (Random.value > 0.99)
+            if (Random.value > 0.95)
             {
                 animator.ResetTrigger("Shoot");
                 animator.SetTrigger("Shoot");

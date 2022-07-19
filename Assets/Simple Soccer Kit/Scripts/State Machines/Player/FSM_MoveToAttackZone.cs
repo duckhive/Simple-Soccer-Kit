@@ -30,6 +30,11 @@ public class FSM_MoveToAttackZone : StateMachineBehaviour
         {
             animator.SetBool("Attack Zone Chosen", false);
         }
+        
+        if (Vector3.Distance(BallManager.Instance.transform.position, _player.zoneCurrentlySeeking.transform.position) > 20)
+        {
+            animator.SetBool("Attack Zone Chosen", false);
+        }
 
         if(_player.hasPossession)
             animator.SetBool("Has Possession", true);

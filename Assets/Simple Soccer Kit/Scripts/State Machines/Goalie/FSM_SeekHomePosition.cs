@@ -19,12 +19,16 @@ public class FSM_SeekHomePosition : StateMachineBehaviour
         {
             if(Vector3.Distance(_goalie.transform.position, _goalie.homePosition) > 1)
                 _goalie.direction = (_goalie.homePosition - _goalie.transform.position).normalized;
+            else if(Vector3.Distance(BallManager.Instance.transform.position, _goalie.homePosition) < 10 
+                    && !_goalie.team.hasPossession)
+                animator.SetBool("Stop Ball", true);
             else 
                 _goalie.direction = Vector3.zero;
         }
+        
         else
         {
-            animator.SetBool("Ball Shot", true);
+            animator.SetBool("Stop Ball", true);
         }    
     }
 

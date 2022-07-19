@@ -37,6 +37,7 @@ public class FSM_ChooseNewAttackZone : StateMachineBehaviour
                 //.Where(t => t.awayScore == 0)
                 //.Where(t => t.homeScore == 0)
                 .Where(t => Vector3.Distance(t.transform.position, BallManager.Instance.transform.position) < 30)
+                .Where(t => Vector3.Distance(t.transform.position, BallManager.Instance.transform.position) > 10)
                 //.Where(t => t.transform.position.z >= _player.transform.position.z)
                 //.Where(t => t.transform.position.z >= BallManager.Instance.transform.position.z)
                 .ToList();
@@ -63,6 +64,7 @@ public class FSM_ChooseNewAttackZone : StateMachineBehaviour
                 //.Where(t => t.awayScore == 0)
                 //.Where(t => t.homeScore == 0)
                 .Where(t => Vector3.Distance(t.transform.position, BallManager.Instance.transform.position) < 30)
+                .Where(t => Vector3.Distance(t.transform.position, BallManager.Instance.transform.position) > 10)
                 //.Where(t => t.transform.position.z <= _player.transform.position.z)
                 //.Where(t => t.transform.position.z <= BallManager.Instance.transform.position.z)
                 .ToList();

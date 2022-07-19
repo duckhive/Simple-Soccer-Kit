@@ -8,6 +8,7 @@ public class Goalie : MonoBehaviour
 {
     public Vector3 direction;
     public Vector3 homePosition;
+    public Team team;
 
     [SerializeField] private float speed = 300f;
     
@@ -18,6 +19,7 @@ public class Goalie : MonoBehaviour
     {
         _player = GetComponent<Player>();
         _rb = GetComponent<Rigidbody>();
+        team = GetComponentInParent<Team>();
     }
 
     private void Start()

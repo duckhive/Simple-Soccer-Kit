@@ -17,8 +17,11 @@ public class FSM_StopBall : StateMachineBehaviour
     {
         _goalie.direction = (BallManager.Instance.transform.position - _goalie.transform.position).normalized;
         
-        if(!GameManager.Instance.ballShot)
-            animator.SetBool("Ball Shot", false);
+        if(!GameManager.Instance.ballShot && Vector3.Distance(_goalie.homePosition, BallManager.Instance.transform.position) > 10)
+            animator.SetBool("Stop Ball", false);
+        
+        if(!GameManager.Instance.gameActive)
+            animator.SetBool("Stop Ball", false);
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
