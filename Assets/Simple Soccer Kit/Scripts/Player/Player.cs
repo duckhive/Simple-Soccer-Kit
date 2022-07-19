@@ -156,7 +156,8 @@ public class Player : MonoBehaviour
         foreach (var player in team.otherTeam.teamPlayers)
         {
             if(Vector3.Distance(player.transform.position, transform.position) < 5)
-                isOpen = false;
+                if(Vector3.Dot(transform.forward, player.transform.position) > 0.75f)
+                    isOpen = false;
         }
     }
 }

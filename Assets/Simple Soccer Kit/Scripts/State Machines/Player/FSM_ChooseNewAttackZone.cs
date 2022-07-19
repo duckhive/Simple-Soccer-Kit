@@ -34,11 +34,11 @@ public class FSM_ChooseNewAttackZone : StateMachineBehaviour
         if (_player.team.teamEnum == TeamEnum.Home)
         {
             var bestZones = PitchManager.Instance.pitchZones
-                .Where(t => t.awayScore == 0)
-                .Where(t => t.homeScore == 0)
-                //.Where(t => Vector3.Distance(t.transform.position, BallManager.Instance.transform.position) < 30)
+                //.Where(t => t.awayScore == 0)
+                //.Where(t => t.homeScore == 0)
+                .Where(t => Vector3.Distance(t.transform.position, BallManager.Instance.transform.position) < 30)
                 //.Where(t => t.transform.position.z >= _player.transform.position.z)
-                .Where(t => t.transform.position.z >= BallManager.Instance.transform.position.z)
+                //.Where(t => t.transform.position.z >= BallManager.Instance.transform.position.z)
                 .ToList();
             
             if (bestZones[0] != null)
@@ -60,11 +60,11 @@ public class FSM_ChooseNewAttackZone : StateMachineBehaviour
         if (_player.team.teamEnum == TeamEnum.Away)
         {
             var bestZones = PitchManager.Instance.pitchZones
-                .Where(t => t.awayScore == 0)
-                .Where(t => t.homeScore == 0)
-                //.Where(t => Vector3.Distance(t.transform.position, BallManager.Instance.transform.position) < 30)
+                //.Where(t => t.awayScore == 0)
+                //.Where(t => t.homeScore == 0)
+                .Where(t => Vector3.Distance(t.transform.position, BallManager.Instance.transform.position) < 30)
                 //.Where(t => t.transform.position.z <= _player.transform.position.z)
-                .Where(t => t.transform.position.z <= BallManager.Instance.transform.position.z)
+                //.Where(t => t.transform.position.z <= BallManager.Instance.transform.position.z)
                 .ToList();
             
             if (bestZones[0] != null)
