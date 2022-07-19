@@ -104,7 +104,10 @@ public class Passing : MonoBehaviour
         
         yield return new WaitForSeconds(0.2f);
         
-        player.gameObject.layer = LayerMask.NameToLayer("Player");
+        if(player.team.teamEnum == TeamEnum.Away)
+            player.gameObject.layer = LayerMask.NameToLayer("Away Player");
+        if(player.team.teamEnum == TeamEnum.Home)
+            player.gameObject.layer = LayerMask.NameToLayer("Home Player");
     }
 
     public void PassBall(Vector3 direction)

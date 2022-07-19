@@ -47,10 +47,7 @@ public class FSM_ChooseZoneToAdvanceTo : StateMachineBehaviour
             }
             else
             {
-                var randomZone = Random.Range(0, _player.nearbyPitchZones.Count);
-
-                _player.zoneCurrentlySeeking = _player.nearbyPitchZones[randomZone];
-                
+                _player.zoneCurrentlySeeking = _player.attackZone;
                 animator.SetBool("Advance Zone Chosen", true);
             }
         }
@@ -73,10 +70,7 @@ public class FSM_ChooseZoneToAdvanceTo : StateMachineBehaviour
             }
             else
             {
-                var randomZone = Random.Range(0, _player.nearbyPitchZones.Count);
-
-                _player.zoneCurrentlySeeking = _player.nearbyPitchZones[randomZone];
-                
+                _player.zoneCurrentlySeeking = _player.attackZone;
                 animator.SetBool("Advance Zone Chosen", true);
             }
         }

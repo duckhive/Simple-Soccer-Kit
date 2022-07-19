@@ -32,7 +32,7 @@ public class FSM_Pass : StateMachineBehaviour
     {
         var openPlayer = _player.team.teamPlayers
             .Where(t => t != _player)
-            .Where(t => t.isOpen)
+            .Where(t => t.isOpenForPass)
             .OrderBy(t => t.distanceToGoal)
             .FirstOrDefault();
 

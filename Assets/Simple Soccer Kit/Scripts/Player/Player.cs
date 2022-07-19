@@ -25,20 +25,18 @@ public class Player : MonoBehaviour
     public bool receivingPass;
     public bool canShoot;
     public bool isOpen;
+    public bool isOpenForPass;
     public float distanceToBall;
     public float distanceToGoal;
-    public PitchZone currentPitchZone;
-    public List<PitchZone> nearbyPitchZones;
     public PitchZone homeZone;
     public PitchZone attackZone;
     public PitchZone dangerZone;
     public PitchZone midZone;
     public PitchZone zoneCurrentlySeeking;
 
-    
+    public List<Player> allOtherTeammates;
     
     private bool _seekingZone;
-    private PitchSensor _pitchSensor;
     private RaycastHit _lineOfSight;
     private Animator _anim;
     private float _turboSpeed;
@@ -51,10 +49,7 @@ public class Player : MonoBehaviour
         startRotation = transform.rotation;
 
         rb = GetComponent<Rigidbody>();
-
-        _pitchSensor = GetComponentInChildren<PitchSensor>();
         _anim = GetComponent<Animator>();
-        
         _turboSpeed = speed * 1.2f;
     }
 
@@ -63,10 +58,15 @@ public class Player : MonoBehaviour
         otherTeam = FindObjectsOfType
                 <Team>()
             .FirstOrDefault(t => t != team);
+
+        allOtherTeammates = team.teamPlayers.Where(t => t != this).ToList();
     }
 
     private void Update()
     {
+        if(hasPossession)
+            DetermineTeammatesCanPassTo();
+        
         GetDistanceToBallHandler();
         GetDistanceToGoalHandler();
         DetermineIfOpenHandler();
@@ -95,7 +95,6 @@ public class Player : MonoBehaviour
                 {
                     rb.velocity = direction * speed * Time.deltaTime;
                 }
-
             }
         }
     }
@@ -144,9 +143,36 @@ public class Player : MonoBehaviour
     private void CanShootHandler()
     {
         if (distanceToGoal < 45)
-            canShoot = true;
+        {
+            if (team.teamEnum == TeamEnum.Away)
+            {
+                if (Physics.Linecast(transform.position, team.shotTarget.transform.position,
+                        LayerMask.GetMask("Home Player")))
+                {
+                    canShoot = false;
+                }
+                else
+                {
+                    canShoot = true;
+                }
+            }
+            if (team.teamEnum == TeamEnum.Home)
+            {
+                if (Physics.Linecast(transform.position, team.shotTarget.transform.position,
+                        LayerMask.GetMask("Away Player")))
+                {
+                    canShoot = false;
+                }
+                else
+                {
+                    canShoot = true;
+                }
+            }    
+        }
         else
+        {
             canShoot = false;
+        }
     }
     
     private void DetermineIfOpenHandler()
@@ -158,6 +184,38 @@ public class Player : MonoBehaviour
             if(Vector3.Distance(player.transform.position, transform.position) < 5)
                 if(Vector3.Dot(transform.forward, player.transform.position) < 0.75f)
                     isOpen = false;
+        }
+    }
+
+    private void DetermineTeammatesCanPassTo()
+    {
+        foreach (var player in allOtherTeammates)
+        {
+            player.isOpenForPass = true;
+
+            if(team.teamEnum == TeamEnum.Away)
+                if(Physics.Linecast(transform.position, player.transform.position, LayerMask.GetMask("Home Player")))
+                    player.isOpenForPass = false;
+            
+            if(team.teamEnum == TeamEnum.Home)
+                if(Physics.Linecast(transform.position, player.transform.position, LayerMask.GetMask("Away Player")))
+                    player.isOpenForPass = false;
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (hasPossession)
+        {
+            foreach (var player in allOtherTeammates)
+            {
+                if(player.isOpenForPass)
+                    Gizmos.color = Color.green;
+                else
+                    Gizmos.color = Color.red;
+                
+                Gizmos.DrawLine(transform.position, player.transform.position);
+            }
         }
     }
 }

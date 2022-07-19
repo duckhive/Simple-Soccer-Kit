@@ -17,12 +17,13 @@ public class FSM_SeekBall : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        /*_targetDir = (BallManager.Instance.transform.position - _player.transform.position).normalized;
+        _targetDir = (BallManager.Instance.transform.position - _player.transform.position).normalized;
         _lookAhead = _targetDir.magnitude /
                      (_player.rb.velocity.magnitude + BallManager.Instance.rb.velocity.magnitude);
-        _player.direction = (BallManager.Instance.transform.position + BallManager.Instance.rb.velocity * _lookAhead).normalized;*/
-
-        _player.direction = (BallManager.Instance.transform.position - _player.transform.position).normalized;
+        
+        _player.direction = ((BallManager.Instance.transform.position + BallManager.Instance.rb.velocity * _lookAhead) - _player.transform.position).normalized;
+        
+        //_player.direction = (BallManager.Instance.transform.position - _player.transform.position).normalized;
 
         if (_player.team.hasPossession)
         {

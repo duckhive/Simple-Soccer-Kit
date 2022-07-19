@@ -20,8 +20,6 @@ public class PositionSensor : MonoBehaviour
             if (other.GetComponent<PitchZone>() != null)
             {
                 var pitchZone = other.GetComponent<PitchZone>();
-            
-                _player.currentPitchZone = pitchZone;
 
                 if (pitchZone != null)
                 {

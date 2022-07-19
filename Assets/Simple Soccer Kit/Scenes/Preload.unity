@@ -463,6 +463,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1390025393}
     m_Modifications:
+    - target: {fileID: 411638256679808174, guid: 472d64069aa8b87469231cad10422051, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 411638256769515779, guid: 472d64069aa8b87469231cad10422051, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -510,6 +514,26 @@ PrefabInstance:
     - target: {fileID: 411638256769515785, guid: 472d64069aa8b87469231cad10422051, type: 3}
       propertyPath: m_Name
       value: Away Player (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 411638256769515785, guid: 472d64069aa8b87469231cad10422051, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 411638257490653022, guid: 472d64069aa8b87469231cad10422051, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 5138380341331065025, guid: 472d64069aa8b87469231cad10422051, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 6541097256996592987, guid: 472d64069aa8b87469231cad10422051, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 8046445525314781760, guid: 472d64069aa8b87469231cad10422051, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 472d64069aa8b87469231cad10422051, type: 3}
@@ -2072,7 +2096,7 @@ GameObject:
   - component: {fileID: 753855461}
   - component: {fileID: 753855463}
   - component: {fileID: 753855462}
-  m_Layer: 10
+  m_Layer: 12
   m_Name: Visor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2777,7 +2801,7 @@ GameObject:
   - component: {fileID: 974318454}
   - component: {fileID: 974318453}
   - component: {fileID: 974318452}
-  m_Layer: 10
+  m_Layer: 12
   m_Name: Goalie
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2912,6 +2936,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   direction: {x: 0, y: 0, z: 0}
   homePosition: {x: 0, y: 0, z: 0}
+  team: {fileID: 0}
   speed: 325
 --- !u!1 &1004217688
 GameObject:
@@ -3837,30 +3862,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1258536486 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1064044230912003264, guid: b38df0e3c3553a746baf23ce93c823c8, type: 3}
-  m_PrefabInstance: {fileID: 1064044231081055155}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &1258536487
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1258536486}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 2d63228b296acdd4b929cefdef22269f, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1276001623
 GameObject:
   m_ObjectHideFlags: 0
@@ -4309,7 +4310,7 @@ GameObject:
   - component: {fileID: 1384762355}
   - component: {fileID: 1384762357}
   - component: {fileID: 1384762356}
-  m_Layer: 10
+  m_Layer: 12
   m_Name: User Indicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4469,30 +4470,6 @@ Transform:
   m_Father: {fileID: 1356524080}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1416793510 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 411638256769515785, guid: 472d64069aa8b87469231cad10422051, type: 3}
-  m_PrefabInstance: {fileID: 8052937882425042294}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &1416793511
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1416793510}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 2d63228b296acdd4b929cefdef22269f, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1457908943
 GameObject:
   m_ObjectHideFlags: 0
@@ -4594,6 +4571,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1390025393}
     m_Modifications:
+    - target: {fileID: 411638256679808174, guid: 472d64069aa8b87469231cad10422051, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 411638256769515779, guid: 472d64069aa8b87469231cad10422051, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -4641,6 +4622,26 @@ PrefabInstance:
     - target: {fileID: 411638256769515785, guid: 472d64069aa8b87469231cad10422051, type: 3}
       propertyPath: m_Name
       value: Away Player (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 411638256769515785, guid: 472d64069aa8b87469231cad10422051, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 411638257490653022, guid: 472d64069aa8b87469231cad10422051, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 5138380341331065025, guid: 472d64069aa8b87469231cad10422051, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 6541097256996592987, guid: 472d64069aa8b87469231cad10422051, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 8046445525314781760, guid: 472d64069aa8b87469231cad10422051, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 472d64069aa8b87469231cad10422051, type: 3}
@@ -4989,7 +4990,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1663690754}
-  m_Layer: 10
+  m_Layer: 12
   m_Name: Ball Position
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6560,7 +6561,7 @@ GameObject:
   - component: {fileID: 816814216379042585}
   - component: {fileID: 816814216379042587}
   - component: {fileID: 816814216379042584}
-  m_Layer: 10
+  m_Layer: 12
   m_Name: User Indicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6699,6 +6700,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1390025393}
     m_Modifications:
+    - target: {fileID: 411638256679808174, guid: 472d64069aa8b87469231cad10422051, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 411638256769515779, guid: 472d64069aa8b87469231cad10422051, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -6747,6 +6752,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Away Player (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 411638256769515785, guid: 472d64069aa8b87469231cad10422051, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 411638257490653022, guid: 472d64069aa8b87469231cad10422051, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 5138380341331065025, guid: 472d64069aa8b87469231cad10422051, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 6541097256996592987, guid: 472d64069aa8b87469231cad10422051, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 8046445525314781760, guid: 472d64069aa8b87469231cad10422051, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 472d64069aa8b87469231cad10422051, type: 3}
 --- !u!4 &5308819622680338280
@@ -6772,7 +6797,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5308819622680338280}
-  m_Layer: 10
+  m_Layer: 12
   m_Name: Ball Position
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6876,7 +6901,7 @@ GameObject:
   - component: {fileID: 5308819622732313288}
   - component: {fileID: 5308819622732313295}
   - component: {fileID: 5308819622732313296}
-  m_Layer: 10
+  m_Layer: 12
   m_Name: Goalie
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6929,6 +6954,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   direction: {x: 0, y: 0, z: 0}
   homePosition: {x: 0, y: 0, z: 0}
+  team: {fileID: 0}
   speed: 650
 --- !u!4 &5308819623486987416
 Transform:
@@ -6955,7 +6981,7 @@ GameObject:
   - component: {fileID: 5308819623486987416}
   - component: {fileID: 5308819623486987418}
   - component: {fileID: 5308819623486987419}
-  m_Layer: 10
+  m_Layer: 12
   m_Name: Visor
   m_TagString: Untagged
   m_Icon: {fileID: 0}

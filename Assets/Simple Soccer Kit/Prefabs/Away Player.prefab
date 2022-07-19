@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 411638256679808175}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Ball Position
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47,7 +47,8 @@ GameObject:
   - component: {fileID: 411638256769515788}
   - component: {fileID: 411638256769515791}
   - component: {fileID: 411638256769515777}
-  m_Layer: 10
+  - component: {fileID: 1416793511}
+  m_Layer: 11
   m_Name: Away Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -87,18 +88,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   userIndicator: {fileID: 5138380341331065025}
   team: {fileID: 0}
+  otherTeam: {fileID: 0}
   startPosition: {x: 0, y: 0, z: 0}
   startRotation: {x: 0, y: 0, z: 0, w: 0}
   rb: {fileID: 0}
+  shooting: {fileID: 0}
+  direction: {x: 0, y: 0, z: 0}
   speed: 300
-  ballDistanceToSeek: 10
   passPower: 0
   ballPosition: {fileID: 411638256679808175}
   user: 0
   hasPossession: 0
   receivingPass: 0
+  canShoot: 0
+  isOpen: 0
+  isOpenForPass: 0
   distanceToBall: 0
+  distanceToGoal: 0
   currentPitchZone: {fileID: 0}
+  nearbyPitchZones: []
+  homeZone: {fileID: 0}
+  attackZone: {fileID: 0}
+  dangerZone: {fileID: 0}
+  midZone: {fileID: 0}
+  zoneCurrentlySeeking: {fileID: 0}
+  allOtherTeammates: []
 --- !u!114 &411638256769515790
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -215,6 +229,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shotForce: 50
+  shooting: 0
+--- !u!95 &1416793511
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 411638256769515785}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2d63228b296acdd4b929cefdef22269f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &411638257490653022
 GameObject:
   m_ObjectHideFlags: 0
@@ -226,7 +260,7 @@ GameObject:
   - component: {fileID: 411638257490653023}
   - component: {fileID: 411638257490653021}
   - component: {fileID: 411638257490653020}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Visor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -307,7 +341,7 @@ GameObject:
   - component: {fileID: 5138380341331065054}
   - component: {fileID: 5138380341331065052}
   - component: {fileID: 5138380341331065055}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: User Indicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -390,7 +424,7 @@ GameObject:
   - component: {fileID: 252800791764722010}
   - component: {fileID: 8446149921946715817}
   - component: {fileID: 3117806510703083651}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Position Sensor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -498,13 +532,13 @@ GameObject:
   - component: {fileID: 8519446737993473734}
   - component: {fileID: 3276170186994404358}
   - component: {fileID: 8372119838789439183}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Pitch Sensor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5099719036458666162
 Transform:
   m_ObjectHideFlags: 0

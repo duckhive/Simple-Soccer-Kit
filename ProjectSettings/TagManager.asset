@@ -12,12 +12,12 @@ TagManager:
   - Water
   - UI
   - Ignore Collisions
-  - Player
+  - 
   - Ground
   - Ball
-  - 
-  - 
-  - 
+  - Home Player
+  - Away Player
+  - Goalie
   - 
   - 
   - 
