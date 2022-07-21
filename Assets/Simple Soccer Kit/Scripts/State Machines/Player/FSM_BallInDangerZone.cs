@@ -22,7 +22,7 @@ public class FSM_BallInDangerZone : StateMachineBehaviour
             animator.SetBool("Seek Danger Zone", false);
         }
         
-        if (Vector3.Distance(BallManager.Instance.transform.position, _player.homeZone.transform.position) < 18)
+        if (Vector3.Distance(BallManager.Instance.transform.position, _player.homeZone.transform.position) < 15)
         {
             animator.SetBool("Seeking Ball", true);
         }

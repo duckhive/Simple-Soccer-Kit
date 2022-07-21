@@ -33,6 +33,7 @@ public class FSM_Pass : StateMachineBehaviour
         var openPlayer = _player.team.teamPlayers
             .Where(t => t != _player)
             .Where(t => t.isOpenForPass)
+            .Where(t=> Vector3.Distance(t.transform.position, _player.transform.position) > 5)
             .OrderBy(t => t.distanceToGoal)
             .FirstOrDefault();
 
@@ -44,7 +45,7 @@ public class FSM_Pass : StateMachineBehaviour
         {
             return _player.team.teamPlayers
                 .Where(t => t != _player)
-                .OrderBy(t => t.distanceToGoal)
+                .OrderByDescending(t => t.distanceToGoal)
                 .FirstOrDefault();
         }
     }

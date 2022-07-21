@@ -16,7 +16,7 @@ public class Possession : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.collider.GetComponent<BallManager>() && GameManager.Instance.gameActive && !_player.possessionCooldown)
+        if (other.collider.GetComponent<BallManager>() && GameManager.Instance.gameActive && !_player.possessionCooldown && !_player.team.hasPossession)
         {
             StartCoroutine(GainPossession());
         }
@@ -64,7 +64,7 @@ public class Possession : MonoBehaviour
     {
         player.possessionCooldown = true;
 
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.5f);
 
         player.possessionCooldown = false;
     }

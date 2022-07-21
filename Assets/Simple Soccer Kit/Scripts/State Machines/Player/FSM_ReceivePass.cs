@@ -15,8 +15,11 @@ public class FSM_ReceivePass : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        _player.direction = (BallManager.Instance.transform.position - _player.transform.position).normalized;
-
+        if(_player.receivingPass)
+            _player.direction = (BallManager.Instance.transform.position - _player.transform.position).normalized;
+        else 
+            _player.direction = Vector3.zero;
+        
         if (_player.hasPossession)
         {
             animator.SetBool("Has Possession", true);

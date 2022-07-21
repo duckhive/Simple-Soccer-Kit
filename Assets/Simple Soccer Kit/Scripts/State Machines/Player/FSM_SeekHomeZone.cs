@@ -17,7 +17,7 @@ public class FSM_SeekHomeZone : StateMachineBehaviour
     {
         _player.direction = (_player.homeZone.transform.position - _player.transform.position).normalized;
 
-        if (Vector3.Distance(BallManager.Instance.transform.position, _player.homeZone.transform.position) < 18)
+        if (Vector3.Distance(BallManager.Instance.transform.position, _player.homeZone.transform.position) < 15)
         {
             animator.SetBool("Seeking Ball", true);
         }
