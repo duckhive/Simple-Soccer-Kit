@@ -15,7 +15,10 @@ public class FSM_AdvanceBall : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        _player.direction = (_player.zoneCurrentlySeeking.transform.position - _player.transform.position).normalized;
+        if(_player.isOpen)
+            _player.direction = (_player.zoneCurrentlySeeking.transform.position - _player.transform.position).normalized;
+        else 
+            _player.direction = (_player.transform.position - _player.playerCovering.transform.position).normalized;
 
         if (Vector3.Distance(_player.zoneCurrentlySeeking.transform.position, _player.transform.position) < 2)
         {
@@ -39,7 +42,7 @@ public class FSM_AdvanceBall : StateMachineBehaviour
 
         if (!_player.isOpen && _player.hasPossession)
         {
-            if (Random.value > 0.95)
+            if (Random.value > 0.99)
             {
                 animator.ResetTrigger("Pass");
                 animator.SetTrigger("Pass");

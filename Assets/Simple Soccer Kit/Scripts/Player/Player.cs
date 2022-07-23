@@ -34,6 +34,7 @@ public class Player : MonoBehaviour
     public PitchZone dangerZone;
     public PitchZone midZone;
     public PitchZone zoneCurrentlySeeking;
+    public Player playerCovering;
 
     public List<Player> allOtherTeammates;
     
@@ -182,10 +183,11 @@ public class Player : MonoBehaviour
         
         foreach (var player in team.otherTeam.teamPlayers)
         {
-            if(Vector3.Distance(player.transform.position, transform.position) < 5)
-                if(Vector3.Dot(transform.forward, player.transform.position) < 0.8f)
-                    isOpen = false;
-
+            if (Vector3.Distance(player.transform.position, transform.position) < 5)
+            {
+                isOpen = false;
+                playerCovering = player;
+            }
         }
     }
 

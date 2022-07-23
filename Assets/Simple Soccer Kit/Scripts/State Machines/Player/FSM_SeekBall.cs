@@ -29,7 +29,9 @@ public class FSM_SeekBall : StateMachineBehaviour
         
         _player.direction = ((BallManager.Instance.transform.position + BallManager.Instance.rb.velocity * _lookAhead) - _player.transform.position).normalized;*/
         
+        
         _player.direction = (BallManager.Instance.transform.position - _player.transform.position).normalized;
+
 
         /*_displacement = BallManager.Instance.transform.position - _player.transform.position;
         _distance = _displacement.magnitude;
