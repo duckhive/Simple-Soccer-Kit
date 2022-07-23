@@ -18,6 +18,8 @@ public class FSM_SeekBall : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         _player = animator.GetComponent<Player>();
+        _player.seekingBall = true;
+        _player.team.seekingBall = true;
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -80,6 +82,7 @@ public class FSM_SeekBall : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        
+        _player.seekingBall = false;
+        _player.team.seekingBall = false;
     }
 }

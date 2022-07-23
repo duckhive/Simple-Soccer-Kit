@@ -16,7 +16,7 @@ public class Possession : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.collider.GetComponent<BallManager>() && GameManager.Instance.gameActive && !_player.possessionCooldown && !_player.team.hasPossession)
+        if (other.collider.GetComponent<BallManager>() && GameManager.Instance.gameActive && !_player.possessionCooldown && !_player.team.hasPossession && !GameManager.Instance.ballShot)
         {
             StartCoroutine(GainPossession());
         }
@@ -31,6 +31,9 @@ public class Possession : MonoBehaviour
         GameManager.Instance.possessingPlayer.Insert(0, _player);
         if(GameManager.Instance.possessingPlayer.Count > 2)
             GameManager.Instance.possessingPlayer.RemoveAt(2);
+        
+        GameManager.Instance.homeTeam.shotTarget.ResetPosition();
+        GameManager.Instance.awayTeam.shotTarget.ResetPosition();
 
         foreach (Player player in GameManager.Instance.allPlayers)
         {

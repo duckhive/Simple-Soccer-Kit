@@ -44,6 +44,9 @@ public class GameManager : MonoBehaviour
         ballShot = false;
         
         GameNotActive();
+        
+        yield return new WaitForSeconds(1f);
+        
         ResetBallAndPlayers();
 
         yield return new WaitForSeconds(1f);

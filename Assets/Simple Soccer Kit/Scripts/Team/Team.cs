@@ -20,6 +20,7 @@ public class Team : MonoBehaviour
     public Team otherTeam;
     public bool user;
     public bool hasPossession;
+    public bool seekingBall;
 
     public TeamEnum teamEnum;
 

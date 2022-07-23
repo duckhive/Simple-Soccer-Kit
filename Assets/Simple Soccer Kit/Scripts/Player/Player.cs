@@ -27,6 +27,7 @@ public class Player : MonoBehaviour
     public bool isOpen;
     public bool isOpenForPass;
     public bool possessionCooldown;
+    public bool seekingBall;
     public float distanceToBall;
     public float distanceToGoal;
     public PitchZone homeZone;
@@ -89,7 +90,7 @@ public class Player : MonoBehaviour
         {
             if (!user)
             {
-                if (receivingPass)
+                if (receivingPass || seekingBall)
                 {
                     rb.velocity = Vector3.Lerp(transform.forward, direction, 0.25f) * _turboSpeed * Time.deltaTime;
                 }
@@ -148,7 +149,7 @@ public class Player : MonoBehaviour
         {
             if (team.teamEnum == TeamEnum.Away)
             {
-                if (Physics.Linecast(transform.position, team.shotTarget.transform.position,
+                if (Physics.Linecast(BallManager.Instance.transform.position, team.shotTarget.transform.position,
                         LayerMask.GetMask("Home Player")))
                 {
                     canShoot = false;
@@ -160,7 +161,7 @@ public class Player : MonoBehaviour
             }
             if (team.teamEnum == TeamEnum.Home)
             {
-                if (Physics.Linecast(transform.position, team.shotTarget.transform.position,
+                if (Physics.Linecast(BallManager.Instance.transform.position, team.shotTarget.transform.position,
                         LayerMask.GetMask("Away Player")))
                 {
                     canShoot = false;
@@ -198,11 +199,11 @@ public class Player : MonoBehaviour
             player.isOpenForPass = true;
 
             if(team.teamEnum == TeamEnum.Away)
-                if(Physics.Linecast(transform.position, player.transform.position, LayerMask.GetMask("Home Player")))
+                if(Physics.Linecast(BallManager.Instance.transform.position, player.transform.position, LayerMask.GetMask("Home Player")))
                     player.isOpenForPass = false;
             
             if(team.teamEnum == TeamEnum.Home)
-                if(Physics.Linecast(transform.position, player.transform.position, LayerMask.GetMask("Away Player")))
+                if(Physics.Linecast(BallManager.Instance.transform.position, player.transform.position, LayerMask.GetMask("Away Player")))
                     player.isOpenForPass = false;
         }
     }
@@ -218,7 +219,7 @@ public class Player : MonoBehaviour
                 else
                     Gizmos.color = Color.red;
                 
-                Gizmos.DrawLine(transform.position, player.transform.position);
+                Gizmos.DrawLine(BallManager.Instance.transform.position, player.transform.position);
             }
         }
     }

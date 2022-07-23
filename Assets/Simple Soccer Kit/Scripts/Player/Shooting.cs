@@ -29,6 +29,11 @@ public class Shooting : MonoBehaviour
                 {
                     if (_player.canShoot)
                     {
+                        if (Input.GetButtonDown("Shoot"))
+                        {
+                            _shotTimer = 0;
+                        }
+                        
                         if (Input.GetButton("Shoot"))
                         {
                             AimTarget();

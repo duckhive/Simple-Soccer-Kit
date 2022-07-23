@@ -58,7 +58,7 @@ public class FSM_AdvanceBall : StateMachineBehaviour
             }
         }
 
-        if (!_player.isOpen && _player.distanceToGoal < 30)
+        if (!_player.isOpen && _player.distanceToGoal < 25)
         {
             animator.ResetTrigger("Shoot");
             animator.SetTrigger("Shoot");

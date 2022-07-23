@@ -20,7 +20,11 @@ public class FSM_SeekMidZone : StateMachineBehaviour
         if(_player.team.hasPossession)
             animator.SetBool("Team Has Possession", true);
         
-        if (Vector3.Distance(BallManager.Instance.transform.position, _player.midZone.transform.position) < 15)
+        if(!_player.team.hasPossession && !_player.otherTeam.hasPossession)
+            animator.SetBool("Seeking Ball", true);
+        
+        if (Vector3.Distance(BallManager.Instance.transform.position, _player.midZone.transform.position) < 15
+            && !_player.team.seekingBall)
         {
             animator.SetBool("Seeking Ball", true);
         }
