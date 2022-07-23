@@ -28,7 +28,7 @@ public class FSM_Shoot : StateMachineBehaviour
     
     public void ShootBall()
     {
-        var direction = ((_player.team.shotTarget.transform.position + new Vector3(Random.Range(-5, 5), Random.Range(0, 5), 0)) - BallManager.Instance.transform.position).normalized;
+        var direction = ((_player.team.shotTarget.transform.position + new Vector3(Random.Range(-5, 5), Random.Range(2, 5), 0)) - BallManager.Instance.transform.position).normalized;
 
         BallManager.Instance.rb.constraints = RigidbodyConstraints.None;
         BallManager.Instance.transform.SetParent(null);

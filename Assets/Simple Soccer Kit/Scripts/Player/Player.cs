@@ -91,11 +91,11 @@ public class Player : MonoBehaviour
             {
                 if (receivingPass)
                 {
-                    rb.velocity = direction * _turboSpeed * Time.deltaTime;
+                    rb.velocity = Vector3.Lerp(transform.forward, direction, 0.25f) * _turboSpeed * Time.deltaTime;
                 }
                 else
                 {
-                    rb.velocity = direction * speed * Time.deltaTime;
+                    rb.velocity = Vector3.Lerp(transform.forward, direction, 0.25f) * speed * Time.deltaTime;
                 }
             }
         }
