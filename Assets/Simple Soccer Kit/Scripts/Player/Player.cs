@@ -90,7 +90,7 @@ public class Player : MonoBehaviour
         {
             if (!user)
             {
-                if (receivingPass || seekingBall)
+                if (receivingPass || seekingBall || hasPossession)
                 {
                     rb.velocity = Vector3.Lerp(transform.forward, direction, 0.25f) * _turboSpeed * Time.deltaTime;
                 }
@@ -104,7 +104,7 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.collider.GetComponent<Player>())
+        if(other.collider.GetComponent<Player>())
             rb.AddForce(other.contacts[0].normal * 20, ForceMode.Impulse);
     }
 

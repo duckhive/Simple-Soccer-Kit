@@ -49,7 +49,7 @@ public class FSM_AdvanceBall : StateMachineBehaviour
             }
         }
 
-        if (_player.isOpen && _player.canShoot)
+        if (/*_player.isOpen && */_player.canShoot)
         {
             if (Random.value > 0.95)
             {
